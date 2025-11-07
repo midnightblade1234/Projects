@@ -1,0 +1,49 @@
+total = 0
+expenses = []
+print("Welcome to the Expense Tracker!")
+print("You can add your expenses below by typing 'add'")
+print("If you wish to find the expense based on the type or date, type 'find'")
+print("If you wish to see the list of expenses, type 'list'")
+print("To exit the program, type 'exit'")
+def add_expense():
+    global total
+    amount = float(input("Enter expense amount: "))
+    total += amount
+    type = str(input("Enter expense type (e.g., food, transport): "))
+    dates = input("Enter the date(D-M-Y format): ")
+    expenses.append({'amount': amount,
+                     'type': type,
+                     'date': dates
+                     })
+    print(f"Added expense: {amount} for {type} on {dates}")
+    print(f"Total expenses: {total}")
+def find_expense():
+    search_type = input("Enter the expense type to search for: ")
+    search_date = input("Enter the date(D-M-Y format) to search for: ")
+    found_expenses = [expense for expense in expenses if expense['type'] == search_type or expense['date'] == search_date]
+    if found_expenses:
+        print("Found the following expenses:")
+        for expense in found_expenses:
+            print(f"Amount: {expense['amount']}, Type: {expense['type']}, Date: {expense['date']}")
+    else:
+        print("No expenses found for the given type and date.")
+while True:
+    option = input("Enter your option (add/find/list/exit): ").lower()
+    if option == 'add':
+        add_expense()
+    elif option == 'find':
+        find_expense()
+    elif option == 'list':
+        if expenses:
+            print("Listing all expenses:")
+            for expense in expenses:
+                print(f"Amount: {expense['amount']}, Type: {expense['type']}, Date: {expense['date']}")
+        else:
+            print("No expenses recorded yet.")
+    elif option == 'exit':
+        print("Exiting the Expense Tracker. Goodbye!")
+        break
+    else:
+        print("Invalid option. Please try again.")
+    
+

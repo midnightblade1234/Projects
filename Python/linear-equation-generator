@@ -7,35 +7,48 @@ def equation_answer(num1, num2, num3, op1, op2):
     if ans == eval(str(num1)+(op1)+str(num2)+(op2)+str(num3)):
         print("Correct!")
     else:
-        print(f"Incorrect. The correct answer is{eval(str(num1)+(op1)+str(num2)+(op2)+str(num3))}")
+        print(f"Incorrect. The correct answer is {eval(str(num1)+(op1)+str(num2)+(op2)+str(num3))}")
 
+difficulty = input("Choose difficulty level - easy, medium, hard: ").lower()
+if difficulty == "easy":
+    n1=1
+    n2=20
+elif difficulty == "medium":
+    n1=5
+    n2=30   
+elif difficulty == "hard":
+    n1=10
+    n2=50
 
 for no_of_problems in range(1, op + 1): 
-    num1 = random.randint(1, 20) 
-    num2 = random.randint(1, 20) 
-    num3 = random.randint(1, 20) 
-    o1 = random.randint(1, 2) 
-    o2 = random.randint(1, 4)
+
+    num1 = random.randint(n1, n2) 
+    num2 = random.randint(n1, n2)   
+    num3 = random.randint(n1, n2)
+     
+    o1 = random.randint(1, 10) 
     op1="+"
     op2="+"
-    if o1 == 1: 
-        if o2 == 4 and num1 % num2 == 0: 
-            equation_answer(num1, num2, num3, "/", "+")
-        elif o2 == 2: 
-            equation_answer(num1, num2, num3, "-", "+")
-        elif o2 == 3: 
-            equation_answer(num1, num2, num3, "*", "+")
-        else: 
-            equation_answer(num1, num2, num3, "+", "+")
+    if o1 == 1 and num2%num3 == 0: 
+        equation_answer(num1, num2, num3, '+', '/')
     elif o1 == 2: 
-        if o2 == 4 and num2 % num3 == 0: 
-            equation_answer(num1, num2, num3, "+", "/")
-        elif o2 == 2: 
-            equation_answer(num1, num2, num3, "+", "-")
-        elif o2 == 3: 
-            equation_answer(num1, num2, num3, "+", "*")
-        else: 
-            equation_answer(num1, num2, num3, "+", "+")
+        equation_answer(num1, num2, num3, '+', '-')
+    elif o1 == 3: 
+        equation_answer(num1, num2, num3, '+', '*')
+    elif o1 == 4: 
+        equation_answer(num1, num2, num3, '-', '+')
+    elif o1 == 5:
+        equation_answer(num1, num2, num3, '-', '-')
+    elif o1 == 6:
+        equation_answer(num1, num2, num3, '-', '*')
+    elif o1 == 7:
+        equation_answer(num1, num2, num3, '*', '-')
+    elif o1 == 8 and num2%num3 == 0:
+        equation_answer(num1, num2, num3, '*', '/')
+    elif o1 == 9 and num1%num2 == 0:
+        equation_answer(num1, num2, num3, '/', '-')
+    else:
+        equation_answer(num1, num2, num3, '+', '+')
 else: 
     print("You have completed all the problems!")
         
